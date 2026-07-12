@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# App data (generated songs, database)
+data/
+*.db
+
+# Model checkpoints
+checkpoints/
+*.ckpt
+*.safetensors
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

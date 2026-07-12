@@ -1,0 +1,21 @@
+services:
+  musicai:
+    build:
+      context: .
+      args:
+        MODELS: "1"   # set to "0" for a lightweight demo-only image
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./checkpoints:/app/checkpoints
+    environment:
+      MUSICAI_ENGINE: auto
+    # Uncomment for NVIDIA GPU acceleration (required for ACE-Step/MusicGen):
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]

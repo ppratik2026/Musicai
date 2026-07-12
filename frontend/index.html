@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MusicAI Studio — Open Source Music Generation</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-icon">♪</span>
+    <div>
+      <h1>MusicAI Studio</h1>
+      <p>Open-source song generation · no watermark · release anywhere</p>
+    </div>
+  </div>
+  <div class="engine-status" id="engine-status">loading engines…</div>
+</header>
+
+<main class="layout">
+  <!-- ==================== CREATE PANEL ==================== -->
+  <section class="panel create-panel">
+    <h2>Create a song</h2>
+
+    <label for="prompt">Style / description <span class="hint">genre, mood, instruments, bpm, vocals</span></label>
+    <textarea id="prompt" rows="3" placeholder="e.g. dreamy hindi indie pop, warm female vocals, acoustic guitar, 95 bpm, romantic"></textarea>
+
+    <div class="chips" id="style-chips">
+      <button class="chip" data-tag="bollywood pop, punchy drums, male vocals">Bollywood pop</button>
+      <button class="chip" data-tag="lofi chill beats, mellow, vinyl crackle">Lofi chill</button>
+      <button class="chip" data-tag="punjabi hip hop, heavy 808 bass, energetic">Punjabi hip hop</button>
+      <button class="chip" data-tag="edm festival banger, big drop, 128 bpm">EDM</button>
+      <button class="chip" data-tag="soulful acoustic ballad, piano, emotional female vocals">Ballad</button>
+      <button class="chip" data-tag="indian classical fusion, sitar, tabla, ambient pads">Classical fusion</button>
+    </div>
+
+    <label for="lyrics">Lyrics <span class="hint">optional — use [verse] [chorus] [bridge] sections; leave empty for instrumental</span></label>
+    <textarea id="lyrics" rows="6" placeholder="[verse]&#10;Chand taaron ki raatein...&#10;&#10;[chorus]&#10;Tu hi mera jahaan..."></textarea>
+
+    <div class="row">
+      <div class="field">
+        <label for="title">Track title</label>
+        <input id="title" placeholder="Untitled">
+      </div>
+      <div class="field">
+        <label for="artist">Artist name</label>
+        <input id="artist" placeholder="Your artist name">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="duration">Duration: <span id="duration-label">60s</span></label>
+        <input type="range" id="duration" min="10" max="240" step="5" value="60">
+      </div>
+      <div class="field">
+        <label for="engine">Engine</label>
+        <select id="engine"><option value="auto">Auto (best available)</option></select>
+      </div>
+    </div>
+
+    <button id="generate-btn" class="primary">⚡ Generate</button>
+    <p class="engine-note" id="engine-note"></p>
+  </section>
+
+  <!-- ==================== LIBRARY ==================== -->
+  <section class="panel library-panel">
+    <h2>Your library</h2>
+    <div id="tracks" class="tracks"></div>
+    <div id="empty-state" class="empty">No tracks yet — describe a song and hit Generate.</div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>Powered by open-source models (<a href="https://github.com/ace-step/ACE-Step" target="_blank" rel="noopener">ACE-Step</a>, Apache-2.0) — outputs carry no watermark.
+  Ready to release? Read the <a href="https://github.com/ppratik2026/Musicai/blob/main/docs/DISTRIBUTION.md" target="_blank" rel="noopener">distribution guide</a>.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
