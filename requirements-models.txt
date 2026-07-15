@@ -3,7 +3,7 @@
 #   pip install -r requirements.txt -r requirements-models.txt
 #
 # ACE-Step: full songs with vocals + lyrics (Apache-2.0, commercial OK).
-acestep @ git+https://github.com/ace-step/ACE-Step.git
+ace-step @ git+https://github.com/ace-step/ACE-Step.git
 
 # MusicGen via transformers: instrumental music (CC-BY-NC weights).
 torch>=2.2
