@@ -44,7 +44,7 @@ class AceStepEngine(MusicEngine):
             # Downloads checkpoints on first use when the directory is empty.
             self._pipeline = ACEStepPipeline(
                 checkpoint_dir=str(checkpoint_dir),
-                dtype="bfloat16",
+                dtype=config.ACE_STEP_DTYPE,
                 torch_compile=False,
             )
         return self._pipeline

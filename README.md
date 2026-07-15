@@ -22,6 +22,14 @@ closed service like Suno can't give you.
 - 📚 Track library with playback, retry, delete
 - 🚀 Single-command run; optional Docker with GPU support
 
+## Try it live on a free GPU
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ppratik2026/Musicai/blob/claude/music-ai-app-open-source-kl30zq/colab/MusicAI_Colab.ipynb)
+
+One click → free Google Colab GPU → public URL with the full app running
+real ACE-Step generation. See [docs/LIVE_TESTING.md](docs/LIVE_TESTING.md)
+for all the ways to test (laptop demo, Colab, rented GPU).
+
 ## Quick start (no GPU needed)
 
 ```bash
@@ -105,6 +113,7 @@ Interactive docs at `/docs` (Swagger UI).
 | `MUSICAI_ENGINE` | `auto` | `ace_step`, `musicgen`, `mock`, or `auto` |
 | `MUSICAI_DATA_DIR` | `./data` | Audio, covers and database location |
 | `MUSICAI_ACE_CHECKPOINT_DIR` | `./checkpoints/ace_step` | ACE-Step weights |
+| `MUSICAI_ACE_DTYPE` | `bfloat16` | Set `float32` on pre-Ampere GPUs (e.g. Colab T4) |
 | `MUSICAI_MUSICGEN_MODEL` | `facebook/musicgen-small` | Any MusicGen HF model |
 | `MUSICAI_MAX_DURATION` | `240` | Max track length (seconds) |
 

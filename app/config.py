@@ -18,6 +18,8 @@ DEFAULT_ENGINE = os.environ.get("MUSICAI_ENGINE", "auto")
 # ACE-Step checkpoint directory (downloaded automatically on first run
 # when empty). MusicGen model name for the transformers/audiocraft backend.
 ACE_STEP_CHECKPOINT_DIR = os.environ.get("MUSICAI_ACE_CHECKPOINT_DIR", str(BASE_DIR / "checkpoints" / "ace_step"))
+# bfloat16 needs Ampere+ (A100/L4/RTX 30xx+); use float32 on older GPUs like T4.
+ACE_STEP_DTYPE = os.environ.get("MUSICAI_ACE_DTYPE", "bfloat16")
 MUSICGEN_MODEL = os.environ.get("MUSICAI_MUSICGEN_MODEL", "facebook/musicgen-small")
 
 # Distribution-ready master format: 44.1 kHz / 16-bit stereo WAV.
