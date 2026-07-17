@@ -56,7 +56,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 ACE-Step checkpoints download automatically on the first generation
 (to `checkpoints/ace_step/`). No GPU at home? Rent one for ~$0.20–0.50/hour
-(RunPod, Vast.ai, Lightning AI) or run on Google Colab.
+— see the **[RunPod guide](docs/RUNPOD.md)** — or run on Google Colab.
 
 ### Docker
 

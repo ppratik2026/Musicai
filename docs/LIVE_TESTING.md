@@ -40,20 +40,11 @@ Notes for the free T4:
 
 ## Option 3 — rented GPU for serious use (~$0.25–0.50/hour)
 
-For full-length songs at good speed, rent an RTX 4090 / A100 machine on
-[RunPod](https://runpod.io), [Vast.ai](https://vast.ai) or
-[Lightning AI](https://lightning.ai):
-
-```bash
-git clone https://github.com/ppratik2026/Musicai.git
-cd Musicai
-pip install -r requirements.txt -r requirements-models.txt
-uvicorn app.main:app --host 0.0.0.0 --port 8000
-```
-
-Expose port 8000 through the provider's dashboard (they all support HTTP
-port forwarding) and open the URL. Generate, download the WAV masters, then
-shut the machine down — you only pay for the hours you use.
+For full-length songs at good speed, rent an RTX 4090 / RTX 3090 machine —
+**step-by-step RunPod guide: [RUNPOD.md](RUNPOD.md)**. (Vast.ai and
+Lightning AI work the same way: clone, install, run, expose port 8000.)
+Generate, download the WAV masters, then stop the machine — you only pay
+for the hours you use.
 
 ## What to check during a live test
 
