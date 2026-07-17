@@ -16,7 +16,8 @@ closed service like Suno can't give you.
   — the leading open-source song model (Apache-2.0 code *and* weights)
 - ☁️ **No GPU? No problem** — the Replicate engine runs ACE-Step on cloud
   GPUs (~$0.03-0.06/song), perfect for deploying on any normal VPS
-- 🎹 **Instrumental generation** via Meta's MusicGen (drafts/personal use)
+- 🎹 **Instrumentals too** — leave the lyrics empty and ACE-Step produces
+  a fully instrumental track
 - 🧪 **Demo synth engine** — try the entire app with zero GPU and zero downloads
 - 📀 **Distribution-ready exports**: 44.1 kHz/16-bit WAV master, 320 kbps MP3,
   FLAC — with title/artist/album/genre and cover art embedded
@@ -81,7 +82,6 @@ through. Set `MODELS: "0"` for a lightweight demo-only image.
 |---|---|---|---|
 | **ACE-Step** | Full songs, vocals + lyrics | Apache-2.0 (code + weights) | ✅ Yes — no watermark |
 | **Replicate cloud** | Same ACE-Step, hosted GPU | Apache-2.0 model via Replicate | ✅ Yes — no watermark |
-| **MusicGen** | Instrumental (~30s clips) | MIT code, **CC-BY-NC** weights | ❌ Drafts only |
 | **Demo synth** | Procedural placeholder | MIT (this repo) | ✅ Yes |
 
 For anything you plan to distribute or sell, generate with **ACE-Step**.
@@ -119,14 +119,13 @@ Interactive docs at `/docs` (Swagger UI).
 
 | Env var | Default | Meaning |
 |---|---|---|
-| `MUSICAI_ENGINE` | `auto` | `ace_step`, `musicgen`, `mock`, or `auto` |
+| `MUSICAI_ENGINE` | `auto` | `ace_step`, `replicate`, `mock`, or `auto` |
 | `MUSICAI_DATA_DIR` | `./data` | Audio, covers and database location |
 | `MUSICAI_ACE_CHECKPOINT_DIR` | `./checkpoints/ace_step` | ACE-Step weights |
 | `MUSICAI_ACE_DTYPE` | `bfloat16` | Set `float16` on pre-Ampere GPUs (e.g. Colab T4) |
 | `MUSICAI_ACE_CPU_OFFLOAD` | `0` | `1` = fit ACE-Step on low-VRAM GPUs (slower) |
 | `MUSICAI_ACE_QUANTIZED` | `0` | `1` = quantized ACE-Step weights (needs torchao) |
 | `MUSICAI_ACE_OVERLAPPED_DECODE` | `1` | Chunked decoding for long songs (keep on) |
-| `MUSICAI_MUSICGEN_MODEL` | `facebook/musicgen-small` | Any MusicGen HF model |
 | `MUSICAI_MAX_DURATION` | `240` | Max track length (seconds) |
 
 ## License

@@ -39,7 +39,7 @@ function updateEngineNote() {
   const note = $("#engine-note");
   if (!engine) {
     note.textContent =
-      "Auto picks the best installed engine (ACE-Step → MusicGen → demo synth).";
+      "Auto picks the best installed engine (ACE-Step → Replicate cloud → demo synth).";
     return;
   }
   note.textContent =
@@ -60,15 +60,8 @@ async function generate() {
 
   // Warn when the selected engine can't do what the form asks for.
   const selected = state.engines.find((e) => e.name === $("#engine").value);
-  const duration = Number($("#duration").value);
   const lyrics = $("#lyrics").value.trim();
-  if (selected && selected.name === "musicgen" && duration > 35) {
-    if (!confirm(
-      "MusicGen can only generate ~30 second instrumental clips.\n\n" +
-      "For a full-length song with vocals, pick the ACE-Step engine.\n\n" +
-      "Generate a 30s clip with MusicGen anyway?"
-    )) return;
-  } else if (selected && !selected.supports_vocals && lyrics) {
+  if (selected && !selected.supports_vocals && lyrics) {
     if (!confirm(
       `${selected.display_name} is instrumental-only — your lyrics will be ignored.\n\n` +
       "For vocals, pick the ACE-Step engine. Continue anyway?"

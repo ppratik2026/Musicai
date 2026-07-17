@@ -11,12 +11,12 @@ AUDIO_DIR = DATA_DIR / "audio"
 COVER_DIR = DATA_DIR / "covers"
 DB_PATH = DATA_DIR / "musicai.db"
 
-# Default generation engine: "ace_step" (full songs with vocals),
-# "musicgen" (instrumental), or "mock" (no GPU needed, for development).
+# Default generation engine: "ace_step" (local GPU), "replicate"
+# (cloud GPU), or "mock" (no GPU needed, for development).
 DEFAULT_ENGINE = os.environ.get("MUSICAI_ENGINE", "auto")
 
 # ACE-Step checkpoint directory (downloaded automatically on first run
-# when empty). MusicGen model name for the transformers/audiocraft backend.
+# when empty).
 ACE_STEP_CHECKPOINT_DIR = os.environ.get("MUSICAI_ACE_CHECKPOINT_DIR", str(BASE_DIR / "checkpoints" / "ace_step"))
 # bfloat16 needs Ampere+ (A100/L4/RTX 30xx+); use float16 on older GPUs like T4.
 ACE_STEP_DTYPE = os.environ.get("MUSICAI_ACE_DTYPE", "bfloat16")
@@ -27,7 +27,6 @@ ACE_STEP_QUANTIZED = os.environ.get("MUSICAI_ACE_QUANTIZED", "0") == "1"
 # Kicks in past ~48s of audio; without it, 3-minute songs exhaust GPU
 # memory during decoding ("GET was unable to find an engine" cuDNN error).
 ACE_STEP_OVERLAPPED_DECODE = os.environ.get("MUSICAI_ACE_OVERLAPPED_DECODE", "1") == "1"
-MUSICGEN_MODEL = os.environ.get("MUSICAI_MUSICGEN_MODEL", "facebook/musicgen-small")
 
 # Distribution-ready master format: 44.1 kHz / 16-bit stereo WAV.
 EXPORT_SAMPLE_RATE = 44100

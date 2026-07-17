@@ -9,9 +9,9 @@ your title, artist name, album, genre and cover art embedded automatically.
 - **ACE-Step engine** — code *and* weights are **Apache-2.0**. Outputs have
   **no watermark** and no platform claiming rights over your track. You can
   release commercially. ✅
-- **MusicGen engine** — the model weights are **CC-BY-NC-4.0
-  (non-commercial)**. Use it for drafts and personal projects only; **do not
-  sell or distribute** MusicGen output. ⚠️
+- **Demo synth engine** — placeholder music for testing the app; nothing
+  stops you from releasing it, but it's not real AI music. Always generate
+  release tracks with ACE-Step (locally or via the Replicate engine).
 - Your **lyrics are yours** — write original lyrics (or use lyrics you have
   rights to). Never generate imitations of a real artist's voice.
 
