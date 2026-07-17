@@ -61,10 +61,49 @@ class AceStepEngine(MusicEngine):
             )
         return self._pipeline
 
+    def _wants_fp32_decode(self) -> bool:
+        setting = config.ACE_STEP_FP32_DECODE
+        if setting == "auto":
+            return config.ACE_STEP_DTYPE == "float16"
+        return setting == "1"
+
+    def _apply_fp32_decode(self, pipeline) -> None:
+        """Keep diffusion in half precision but decode audio in float32.
+
+        The DCAE decoder and vocoder are small convolutional nets; in fp16
+        their convolutions can fail cuDNN engine selection on T4-class GPUs
+        ("GET was unable to find an engine to execute this computation").
+        """
+        if getattr(pipeline, "_musicai_fp32_decode", False):
+            return
+        # Weights load lazily on the first pipeline call; force them now so
+        # the dtype conversion below has something to convert.
+        if not pipeline.loaded:
+            if pipeline.quantized:
+                pipeline.load_quantized_checkpoint(pipeline.checkpoint_dir)
+            else:
+                pipeline.load_checkpoint(pipeline.checkpoint_dir)
+
+        import torch
+
+        dcae = pipeline.music_dcae.float()
+        for method_name in ("decode", "decode_overlap"):
+            original = getattr(dcae, method_name)
+
+            def wrapped(latents, *args, _original=original, **kwargs):
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+                return _original(latents.float(), *args, **kwargs)
+
+            setattr(dcae, method_name, wrapped)
+        pipeline._musicai_fp32_decode = True
+
     def generate(self, request: GenerationRequest) -> GenerationResult:
         import soundfile as sf
 
         pipeline = self._load()
+        if self._wants_fp32_decode():
+            self._apply_fp32_decode(pipeline)
         with tempfile.TemporaryDirectory() as tmp:
             out_path = str(Path(tmp) / "output.wav")
             pipeline(

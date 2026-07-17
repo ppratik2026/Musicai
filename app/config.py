@@ -27,6 +27,10 @@ ACE_STEP_QUANTIZED = os.environ.get("MUSICAI_ACE_QUANTIZED", "0") == "1"
 # Kicks in past ~48s of audio; without it, 3-minute songs exhaust GPU
 # memory during decoding ("GET was unable to find an engine" cuDNN error).
 ACE_STEP_OVERLAPPED_DECODE = os.environ.get("MUSICAI_ACE_OVERLAPPED_DECODE", "1") == "1"
+# Run the DCAE decoder + vocoder in float32. fp16 convolutions trip cuDNN
+# on T4-class GPUs ("GET was unable to find an engine"); these models are
+# small, so fp32 costs little memory. "auto" = on whenever dtype is float16.
+ACE_STEP_FP32_DECODE = os.environ.get("MUSICAI_ACE_FP32_DECODE", "auto")
 
 # Distribution-ready master format: 44.1 kHz / 16-bit stereo WAV.
 EXPORT_SAMPLE_RATE = 44100
