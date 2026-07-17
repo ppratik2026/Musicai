@@ -113,7 +113,9 @@ Interactive docs at `/docs` (Swagger UI).
 | `MUSICAI_ENGINE` | `auto` | `ace_step`, `musicgen`, `mock`, or `auto` |
 | `MUSICAI_DATA_DIR` | `./data` | Audio, covers and database location |
 | `MUSICAI_ACE_CHECKPOINT_DIR` | `./checkpoints/ace_step` | ACE-Step weights |
-| `MUSICAI_ACE_DTYPE` | `bfloat16` | Set `float32` on pre-Ampere GPUs (e.g. Colab T4) |
+| `MUSICAI_ACE_DTYPE` | `bfloat16` | Set `float16` on pre-Ampere GPUs (e.g. Colab T4) |
+| `MUSICAI_ACE_CPU_OFFLOAD` | `0` | `1` = fit ACE-Step on low-VRAM GPUs (slower) |
+| `MUSICAI_ACE_QUANTIZED` | `0` | `1` = quantized ACE-Step weights (needs torchao) |
 | `MUSICAI_MUSICGEN_MODEL` | `facebook/musicgen-small` | Any MusicGen HF model |
 | `MUSICAI_MAX_DURATION` | `240` | Max track length (seconds) |
 

@@ -206,7 +206,8 @@ function uploadCover(trackId) {
 $("#generate-btn").addEventListener("click", generate);
 $("#engine").addEventListener("change", updateEngineNote);
 $("#duration").addEventListener("input", () => {
-  $("#duration-label").textContent = `${$("#duration").value}s`;
+  const s = Number($("#duration").value);
+  $("#duration-label").textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 });
 document.querySelectorAll(".chip").forEach((chip) => {
   chip.addEventListener("click", () => {

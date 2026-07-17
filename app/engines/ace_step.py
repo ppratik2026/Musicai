@@ -37,15 +37,26 @@ class AceStepEngine(MusicEngine):
 
     def _load(self):
         if self._pipeline is None:
+            import os
+
             from acestep.pipeline_ace_step import ACEStepPipeline
 
             checkpoint_dir = Path(config.ACE_STEP_CHECKPOINT_DIR)
             checkpoint_dir.mkdir(parents=True, exist_ok=True)
+            # The constructor only maps "bfloat16"/"float32"; other dtypes
+            # (e.g. float16 for T4-class GPUs) go through ACE-Step's own
+            # ACE_PIPELINE_DTYPE override.
+            dtype = config.ACE_STEP_DTYPE
+            if dtype not in ("bfloat16", "float32"):
+                os.environ["ACE_PIPELINE_DTYPE"] = dtype
+                dtype = "float32"
             # Downloads checkpoints on first use when the directory is empty.
             self._pipeline = ACEStepPipeline(
                 checkpoint_dir=str(checkpoint_dir),
-                dtype=config.ACE_STEP_DTYPE,
+                dtype=dtype,
                 torch_compile=False,
+                cpu_offload=config.ACE_STEP_CPU_OFFLOAD,
+                quantized=config.ACE_STEP_QUANTIZED,
             )
         return self._pipeline
 

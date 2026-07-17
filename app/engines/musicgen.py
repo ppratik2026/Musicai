@@ -19,6 +19,7 @@ class MusicGenEngine(MusicEngine):
     display_name = "MusicGen (instrumental)"
     description = (
         "Meta's MusicGen: instrumental music from a text description. "
+        "Max ~30 s per clip (model limit) — for full-length songs use ACE-Step. "
         "Weights are CC-BY-NC (non-commercial) — use ACE-Step for releases."
     )
     supports_vocals = False
