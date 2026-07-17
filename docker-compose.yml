@@ -11,6 +11,8 @@ services:
       - ./checkpoints:/app/checkpoints
     environment:
       MUSICAI_ENGINE: auto
+      # For CPU-only servers, generate via Replicate's cloud GPUs:
+      # REPLICATE_API_TOKEN: r8_your_token
     # Uncomment for NVIDIA GPU acceleration (required for ACE-Step/MusicGen):
     # deploy:
     #   resources:

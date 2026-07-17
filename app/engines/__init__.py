@@ -5,6 +5,7 @@ from .ace_step import AceStepEngine
 from .base import GenerationRequest, GenerationResult, MusicEngine
 from .mock import MockEngine
 from .musicgen import MusicGenEngine
+from .replicate_engine import ReplicateEngine
 
 __all__ = [
     "GenerationRequest",
@@ -19,7 +20,7 @@ _ENGINES: dict[str, MusicEngine] = {}
 
 def _registry() -> dict[str, MusicEngine]:
     if not _ENGINES:
-        for engine in (AceStepEngine(), MusicGenEngine(), MockEngine()):
+        for engine in (AceStepEngine(), ReplicateEngine(), MusicGenEngine(), MockEngine()):
             _ENGINES[engine.name] = engine
     return _ENGINES
 
@@ -42,7 +43,7 @@ def get_engine(name: str | None = None) -> MusicEngine:
             )
         return engine
     # auto: prefer the best available engine
-    for candidate in ("ace_step", "musicgen", "mock"):
+    for candidate in ("ace_step", "replicate", "musicgen", "mock"):
         if registry[candidate].is_available():
             return registry[candidate]
     return registry["mock"]

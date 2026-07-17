@@ -14,6 +14,8 @@ closed service like Suno can't give you.
 
 - 🎤 **Full songs with vocals + lyrics** via [ACE-Step](https://github.com/ace-step/ACE-Step)
   — the leading open-source song model (Apache-2.0 code *and* weights)
+- ☁️ **No GPU? No problem** — the Replicate engine runs ACE-Step on cloud
+  GPUs (~$0.03-0.06/song), perfect for deploying on any normal VPS
 - 🎹 **Instrumental generation** via Meta's MusicGen (drafts/personal use)
 - 🧪 **Demo synth engine** — try the entire app with zero GPU and zero downloads
 - 📀 **Distribution-ready exports**: 44.1 kHz/16-bit WAV master, 320 kbps MP3,
@@ -78,10 +80,17 @@ through. Set `MODELS: "0"` for a lightweight demo-only image.
 | Engine | Output | License | Commercial release |
 |---|---|---|---|
 | **ACE-Step** | Full songs, vocals + lyrics | Apache-2.0 (code + weights) | ✅ Yes — no watermark |
-| **MusicGen** | Instrumental | MIT code, **CC-BY-NC** weights | ❌ Drafts only |
+| **Replicate cloud** | Same ACE-Step, hosted GPU | Apache-2.0 model via Replicate | ✅ Yes — no watermark |
+| **MusicGen** | Instrumental (~30s clips) | MIT code, **CC-BY-NC** weights | ❌ Drafts only |
 | **Demo synth** | Procedural placeholder | MIT (this repo) | ✅ Yes |
 
 For anything you plan to distribute or sell, generate with **ACE-Step**.
+
+## Deploying on your own server (Hostinger/any VPS)
+
+See **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** — step-by-step: systemd
+service, nginx + HTTPS + password protection, domain setup, and the
+Replicate cloud engine so a CPU-only VPS can generate real songs.
 
 ## Releasing to Spotify / Apple Music / everywhere
 
