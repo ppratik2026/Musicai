@@ -57,6 +57,7 @@ class AceStepEngine(MusicEngine):
                 torch_compile=False,
                 cpu_offload=config.ACE_STEP_CPU_OFFLOAD,
                 quantized=config.ACE_STEP_QUANTIZED,
+                overlapped_decode=config.ACE_STEP_OVERLAPPED_DECODE,
             )
         return self._pipeline
 
